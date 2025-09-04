@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body{
+    overflow-x:hidden;
+}
+
+.bgHome{
+    background: url('./assets/Images/bghome.svg');
+}
+
+.border-line{
+    border-top: 1.5px dashed #838894d2;
+}
+
+.react-tel-input .flag {
+  transform: scale(1.4);       
+  transform-origin: center;
+}
+
+/* Hide default arrow icon */
+.react-tel-input .selected-flag .arrow {
+  display: none !important;
+}
+
+/* Add custom icon using ::after */
+.react-tel-input .selected-flag::after {
+  content: '▾'; /* Use any Unicode symbol or icon font */
+  color: #999DAA;
+  font-size: 20px;
+  position: absolute;
+  left: 75%;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+
+/* Remove background color change on hover */
+.react-tel-input .selected-flag:hover {
+  background-color: transparent !important;
+}
+
+/* Prevent background color change when dropdown is open */
+.react-tel-input .selected-flag.open {
+  background-color: transparent !important;
+}
+
+
+/* inactive bullet */
+.swiper-pagination-bullet {
+  background: #9ca3af !important;
+  opacity: 1;
+}
+
+/* active bullet */
+.swiper-pagination-bullet-active {
+  background: #dad9d5 !important;
+}
+
+.swiper-pagination {
+  bottom: -6px !important;
+  position: relative !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
