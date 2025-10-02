@@ -25,7 +25,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
 	origin:'https://study-notion-frontent.vercel.app',
-	credentials:true
+	credentials:true,
+	allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 }))
 app.use(fileUpload({
 	useTempFiles:true,
