@@ -21,35 +21,30 @@ const VerifyEmail = () => {
             return
         }
 
-        // console.log(signupData)
         const { email, firstName, lastName, password, confirmPassword, accountType, contactNumber } = signupData;
 
         setLoading(true)
         await dispatch(signup(email, firstName, lastName, password, confirmPassword, otp, accountType, contactNumber, navigate))
         setLoading(false)
-
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if(resendCooldown <= 0) return
-        const timer = setTimeout(() => {
-            setResendCooldown(resendCooldown - 1)
-        }, 1000);
+        const timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000)
         return () => clearTimeout(timer)
-    },[resendCooldown])
+    }, [resendCooldown])
 
     const handleResend = async () => {
         if(resendCooldown > 0) return;
-
         setResendCooldown(30);
         await dispatch(sendOtp(signupData.email, navigate))
     }
 
     return (
-        <div className='text-richblack-5 flex flex-col justify-center items-center min-h-[90vh]'>
-            <div className='flex flex-col gap-2 w-[30%]'>
-                <h1 className='text-3xl font-semibold'>Verify Email</h1>
-                <p className='text-base text-richblack-200'>
+        <div className='text-richblack-5 flex flex-col justify-center items-center min-h-[90vh] px-4'>
+            <div className='flex flex-col gap-3 w-full max-w-xs'>
+                <h1 className='text-2xl sm:text-3xl font-semibold'>Verify Email</h1>
+                <p className='text-sm sm:text-base text-richblack-200'>
                     A verification code has been sent to your email. Enter the code below.
                 </p>
 
@@ -60,19 +55,14 @@ const VerifyEmail = () => {
                         numInputs={6}
                         shouldAutoFocus
                         inputType='tel'
-                        renderSeparator={<span className='w-3' />}
+                        renderSeparator={<span className='w-2 sm:w-3' />}
                         renderInput={(props) => (
                             <input
                                 {...props}
                                 className='h-10 rounded-md border-2 bg-richblack-800 border-richblack-600 focus:outline-none focus:border-yellow-100 text-center text-richblack-5'
-                                type='tel'
-                                style={{
-                                    width: '2.5rem',
-
-                                }}
+                                style={{ width: '2.5rem' }}
                             />
-                        )
-                        }
+                        )}
                     />
 
                     <button
@@ -83,18 +73,18 @@ const VerifyEmail = () => {
                     </button>
                 </form>
 
-                <div className='flex flex-row justify-between px-2 mt-1'>
-                    <Link to='/login' className=''>
+                <div className='flex flex-row justify-between mt-3 gap-2'>
+                    <Link to='/login' className='text-sm sm:text-base text-blue-100 hover:underline'>
                         Back to Login
                     </Link>
 
                     <button
                         type='button'
                         onClick={handleResend}
-                        className=''
                         disabled={resendCooldown > 0}
+                        className={`text-sm sm:text-base text-yellow-50 hover:underline ${resendCooldown > 0 ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        {resendCooldown > 0 ? <p>{resendCooldown}s wait...</p> : 'Resend it'}
+                        {resendCooldown > 0 ? `${resendCooldown}s wait...` : 'Resend it'}
                     </button>
                 </div>
             </div>

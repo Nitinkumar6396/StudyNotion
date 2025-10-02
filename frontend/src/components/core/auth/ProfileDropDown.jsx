@@ -31,7 +31,7 @@ const ProfileDropDown = () => {
 
 
   return (
-    <div className='text-white flex relative z-20' ref={dropdownRef}>
+    <div className='text-white max-md:hidden flex relative z-20' ref={dropdownRef}>
       <button onClick={() => setOpen((prev) => !prev)} className='flex flex-row items-center'>
         <img className='w-10 h-10 rounded-full object-center' src={user.image} alt="" />
         <FaCaretDown size={20} />

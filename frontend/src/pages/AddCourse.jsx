@@ -33,7 +33,7 @@ const AddCourse = () => {
                     {step === 3 && <PublishCourse />}
                 </div>
 
-                <div className='flex flex-col gap-4 bg-richblack-800 rounded-md max-w-96 h-fit border p-5'>
+                <div className='max-xl:hidden jflex flex-col gap-4 bg-richblack-800 rounded-md max-w-96 h-fit border p-5'>
                     <h1 className='text-lg font-semibold flex items-center'>
                         <IoIosFlash className='text-yellow-50' size={24} />
                         <span>Course Upload Tips</span>

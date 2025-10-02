@@ -29,29 +29,27 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="min-h-[90vh] flex justify-center items-center text-richblack-5">
-      <div className={`flex flex-col gap-4 ${emailSent ? "w-[25%]" : "w-[30%]"}`}>
+    <div className="min-h-[90vh] flex justify-center items-center text-richblack-5 px-4">
+      <div className={`flex flex-col gap-4 w-full max-w-sm`}>
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-semibold">
-            {emailSent ? "Check email" : "Reset your password"}
+          <h1 className="text-2xl sm:text-3xl font-semibold">
+            {emailSent ? "Check your email" : "Reset your password"}
           </h1>
-          <p className="text-base text-richblack-200">
+          <p className="text-sm sm:text-base text-richblack-200">
             {emailSent ? (
               <>
                 We have sent the reset email to <span className="text-blue-200">{email}</span>
               </>
             ) : (
-              "Have no fear. We’ll email you instructions to reset your password. If you don’t have access to your email we can try account recovery"
+              "Have no fear. We’ll email you instructions to reset your password. If you don’t have access to your email we can try account recovery."
             )}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {!emailSent && (
             <label className="flex flex-col gap-1">
-              <p className="text-sm">
-                Email Address <span className="text-red-600">*</span>
-              </p>
+              <p className="text-sm">Email Address <span className="text-red-600">*</span></p>
               <input
                 type="email"
                 className="bg-richblack-800 w-full text-richblack-5 p-2 rounded-lg"
@@ -68,7 +66,7 @@ const ResetPassword = () => {
             type="submit"
             className={`bg-yellow-50 p-2 rounded-md text-richblue-900 
               ${resendCooldown > 0 ? "opacity-70 cursor-not-allowed" : ""} 
-              ${emailSent ? "mt-3" : "mt-8"}`}
+              mt-4`}
           >
             {!emailSent
               ? "Reset Password"
@@ -78,10 +76,10 @@ const ResetPassword = () => {
           </button>
         </form>
 
-        <Link to="/login" className="-mt-2 w-fit">
-          <div className="flex flex-row items-center hover:text-blue-100">
-            <WiDirectionLeft size={28} />
-            <p>Back to login</p>
+        <Link to="/login" className="mt-2 w-fit">
+          <div className="flex flex-row items-center gap-1 hover:text-blue-100">
+            <WiDirectionLeft size={24} />
+            <p className="text-sm sm:text-base">Back to login</p>
           </div>
         </Link>
       </div>

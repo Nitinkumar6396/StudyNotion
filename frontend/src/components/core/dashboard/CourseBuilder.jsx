@@ -55,7 +55,7 @@ const CourseBuilder = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(submitHandler)} className='flex flex-col gap-4 bg-richblack-800 px-6 py-4 rounded-md'>
+            <form onSubmit={handleSubmit(submitHandler)} className='flex flex-col gap-4 bg-richblack-800 px-4 py-2 sm:px-6 sm:py-4 rounded-md'>
                 <h1 className='text-2xl font-semibold'>Course Builder</h1>
 
                 {/* Section Name Input */}

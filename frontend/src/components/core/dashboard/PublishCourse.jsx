@@ -63,10 +63,10 @@ const PublishCourse = () => {
           <label htmlFor="status" className='cursor-pointer'>Make this Course Public</label>
         </div>
 
-        <div className="flex flex-row gap-4 justify-end">
+        <div className="flex flex-col [@media(min-width:392px)]:flex-row gap-4 justify-end">
           <button
             type="button"
-            className="flex flex-row items-center rounded-md px-3 py-2 bg-richblack-300 text-richblack-900 font-semibold"
+            className="flex flex-row w-fit items-center rounded-md px-3 py-2 bg-richblack-300 text-richblack-900 font-semibold"
             onClick={() => dispatch(setStep(2))}
             disabled={isSubmitting}
           >
@@ -76,7 +76,7 @@ const PublishCourse = () => {
 
           <button
             type="button"
-            className={`flex flex-row gap-1 items-center rounded-md px-3 py-2 bg-yellow-50 text-richblack-900 font-semibold ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+            className={`flex flex-row w-fit gap-1 items-center rounded-md px-3 py-2 bg-yellow-50 text-richblack-900 font-semibold ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             onClick={handleChanges}
             disabled={isSubmitting}
           >

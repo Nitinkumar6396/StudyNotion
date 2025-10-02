@@ -7,7 +7,6 @@ import { login } from '../operations/authApi';
 import Footer from '../components/common/Footer';
 
 const Login = () => {
-
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -15,7 +14,7 @@ const Login = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
 
-    const handleSumbmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
         await dispatch(login(email, password, navigate))
@@ -23,16 +22,21 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div className='w-11/12 mx-auto flex h-[calc(100vh-3.5rem)] flex-row gap-[8rem] items-center justify-center'>
+        <div className='flex flex-col min-h-[calc(100vh-3.5rem)]'>
+            <div className='w-11/12 mx-auto flex flex-col sm:flex-row gap-10 lg:gap-20 items-center justify-center py-10'>
 
-                <div className='text-richblack-200 flex flex-col gap-7 w-[30%]'>
+                {/* Left Side: Form */}
+                <div className='text-richblack-200 flex flex-col gap-7 w-full lg:w-[35%]'>
                     <div className='flex items-start gap-1 flex-col'>
                         <p className='text-3xl font-semibold text-richblack-5'>Welcome Back</p>
-                        <p className='text-base max-w-[25rem]'>Build skills for today, tomorrow, and beyond. <span className='font-edu-sa text-[#2dc9ec]'>Education to future-proof your career.</span></p>
+                        <p className='text-base max-w-[25rem]'>
+                            Build skills for today, tomorrow, and beyond. 
+                            <span className='font-edu-sa text-[#2dc9ec]'> Education to future-proof your career.</span>
+                        </p>
                     </div>
 
-                    <form onSubmit={handleSumbmit} className='flex flex-col gap-6 text-richblack-5'>
+                    <form onSubmit={handleSubmit} className='flex flex-col gap-6 text-richblack-5'>
+                        {/* Email */}
                         <label className='flex flex-col gap-1'>
                             <p className='text-sm'>Email Address <span className='text-red-600'>*</span></p>
                             <input
@@ -45,7 +49,8 @@ const Login = () => {
                             />
                         </label>
 
-                        <label className='flex flex-col gap-1 relative' >
+                        {/* Password */}
+                        <label className='flex flex-col gap-1 relative'>
                             <p className='text-sm'>Password <span className='text-red-600'>*</span></p>
                             <input
                                 type={`${showPassword ? "text" : "password"}`}
@@ -55,28 +60,28 @@ const Login = () => {
                                 placeholder='Enter Password'
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <Link to={'/reset-password'} className='text-sm text-end text-blue-100'>Forgot password </Link>
+                            <Link to={'/reset-password'} className='text-sm text-end text-blue-100 mt-1'>Forgot password?</Link>
                             <span
-                                className='absolute text-lg cursor-pointer translate-y-9 translate-x-80'
+                                className='absolute right-3 top-9 text-lg cursor-pointer'
                                 onClick={() => setShowPassword(prev => !prev)}
                             >
-                                {
-                                    showPassword
-                                        ? <AiOutlineEyeInvisible />
-                                        : <AiOutlineEye />
-                                }
+                                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </span>
                         </label>
 
-                        <button type='submit' disabled={loading} className={`bg-yellow-50 p-2 rounded-md text-richblue-900 ${loading ? 'opacity-70  cursor-not-allowed' : ''}`}>
+                        <button
+                            type='submit'
+                            disabled={loading}
+                            className={`bg-yellow-50 p-2 rounded-md text-richblue-900 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                        >
                             {loading ? 'Signing in...' : 'Sign in'}
                         </button>
-
                     </form>
                 </div>
 
-                <div className=''>
-                    <img src={LoginImage} alt="" />
+                {/* Right Side: Image */}
+                <div className='w-full lg:w-[40%] justify-center hidden md:flex'>
+                    <img src={LoginImage} alt="Login" className='w-full max-w-sm object-contain' />
                 </div>
 
             </div>

@@ -10,7 +10,7 @@ const Stats = [
 const StatsComponent = () => {
   return (
     <div className='bg-richblack-800'>
-      <div className='w-11/12 mx-auto grid grid-cols-4 py-8'>
+      <div className='w-11/12 mx-auto grid grid-cols-2 gap-y-5 sm:grid-cols-4 py-8'>
         {
           Stats.map((item,index) => {
             return (

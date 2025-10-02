@@ -10,7 +10,7 @@ const Dashboard = () => {
 
                 <Sidebar />
 
-                <div style={{ width: 'calc(100vw - 15rem)', overflowY: 'auto' }}>
+                <div style={{ width: '100vw', overflowY: 'auto' }}>
                     <Outlet />
                 </div>
             </div>

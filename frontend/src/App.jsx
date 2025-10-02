@@ -32,9 +32,9 @@ const App = () => {
   const { user } = useSelector((state) => state.profile)
 
   return (
-    <div className='w-screen max-h-screen bg-richblack-900 flex flex-col font-inter'>
+    <div className='w-screen bg-richblack-900 flex flex-col font-inter'>
       <Navbar />
-      <div className='overflow-y-scroll'>
+      <div className='overflow-y-auto'>
         <Routes >
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<AboutUs />} />

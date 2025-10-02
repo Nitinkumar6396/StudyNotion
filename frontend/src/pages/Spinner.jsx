@@ -7,7 +7,7 @@ export function Spinner() {
   // useEffect(() => {
   //   const interval = setInterval(() => {
   //     setDots((prev) => (prev.length < 3 ? prev + "." : ""))
-  //   }, 500)
+  //   }, 300)
 
   //   return () => clearInterval(interval)
   // }, [])

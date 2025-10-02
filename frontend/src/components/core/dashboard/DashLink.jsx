@@ -12,9 +12,9 @@ const DashLink = ({data}) => {
   return (
     <div>
         <NavLink to={data?.path}>
-            <div className={`flex flex-row gap-3 px-8 py-2 items-center ${location.pathname === data?.path ? "bg-richblack-900 border-l-2 border-yellow-50 text-yellow-50" : ""}`}>
-                <Icon /> 
-                <p>{data?.name}</p>
+            <div className={`flex flex-row gap-3 px-4 lg:px-8 py-2 items-center ${location.pathname === data?.path ? "bg-richblack-900 border-l-2 border-yellow-50 text-yellow-50" : ""}`}>
+                <Icon className='max-lg:text-2xl'/> 
+                <p className='max-lg:hidden'>{data?.name}</p>
             </div>
         </NavLink>
     </div>

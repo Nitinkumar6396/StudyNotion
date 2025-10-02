@@ -50,7 +50,6 @@ const Settings = () => {
     },
   })
 
-  // Profile Submit
   const onSubmitProfile = async (data) => {
     const hasChanges =
       data.firstName !== (user?.firstName || "") ||
@@ -70,14 +69,12 @@ const Settings = () => {
     setIsProfileSubmitting(false)
   }
 
-  // Password Submit
   const onSubmitPassword = async (data) => {
     setIsPasswordSubmitting(true)
     await dispatch(changePassword(data.oldPassword, data.newPassword, data.newPassword))
     setIsPasswordSubmitting(false)
   }
 
-  // Image Upload
   const handleImageUpload = async () => {
     if (!image) return
     setIsImageUploading(true)
@@ -86,21 +83,21 @@ const Settings = () => {
   }
 
   return (
-    <div className="p-12 flex flex-col gap-10 justify-center">
+    <div className="w-full px-4 sm:px-6 md:px-10 py-6 flex flex-col gap-8">
 
       {/* Profile Picture */}
-      <div className="flex flex-row px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md items-center gap-6">
+      <div className="flex flex-col sm:flex-row px-4 sm:px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md items-center gap-4 sm:gap-6">
         <img
-          className="w-16 h-16 object-center rounded-full"
+          className="w-24 h-24 sm:w-12 sm:h-12 object-cover object-center rounded-full"
           src={image ? URL.createObjectURL(image) : user.image}
           alt="profile"
         />
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-full">
           <h2 className="text-lg font-semibold">Change Profile Picture</h2>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-2 sm:gap-4">
             <label
               htmlFor="image"
-              className="flex flex-row gap-2 items-center bg-richblack-100 text-richblack-900 font-semibold px-5 py-2 rounded-md cursor-pointer"
+              className="flex flex-row gap-2 items-center bg-richblack-100 text-richblack-900 font-semibold px-4 py-2 rounded-md cursor-pointer w-fit"
             >
               Select
             </label>
@@ -111,11 +108,10 @@ const Settings = () => {
               className="hidden"
               accept="image/*"
             />
-
             <button
               onClick={handleImageUpload}
               disabled={isImageUploading || !image}
-              className={`flex flex-row gap-2 items-center bg-yellow-50 text-richblack-900 font-semibold px-5 py-2 rounded-md ${isImageUploading || !image ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`flex flex-row gap-2 items-center bg-yellow-50 text-richblack-900 font-semibold px-4 py-2 rounded-md w-fit ${isImageUploading || !image ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               {isImageUploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -126,18 +122,18 @@ const Settings = () => {
       {/* Profile Form */}
       <form
         onSubmit={handleSubmitProfile(onSubmitProfile)}
-        className="flex flex-col px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md gap-6"
+        className="flex flex-col px-4 sm:px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md gap-6"
       >
         <h2 className="text-lg font-semibold">Profile Information</h2>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* First Name */}
           <label className="flex flex-col gap-1">
             <p className="text-sm">First Name</p>
             <input
               type="text"
               {...registerProfile("firstName", { required: 'Please enter your first name.' })}
-              className="bg-richblack-900 w-full text-richblack-5 p-[.65rem] rounded-md"
+              className="bg-richblack-900 w-full text-richblack-5 p-2 rounded-md"
               placeholder="Enter first name"
             />
             {profileErrors.firstName && <span className="text-red-500 text-sm">{profileErrors.firstName?.message}</span>}
@@ -149,7 +145,7 @@ const Settings = () => {
             <input
               type="text"
               {...registerProfile("lastName", { required: 'Please enter your last name.' })}
-              className="bg-richblack-900 w-full text-richblack-5 p-[.65rem] rounded-md"
+              className="bg-richblack-900 w-full text-richblack-5 p-2 rounded-md"
               placeholder="Enter last name"
             />
             {profileErrors.lastName && <span className="text-red-500 text-sm">{profileErrors.lastName?.message}</span>}
@@ -167,7 +163,7 @@ const Settings = () => {
                   message: "Date of Birth cannot be in the future.",
                 },
               })}
-              className="bg-richblack-900 w-full text-richblack-200 p-[.65rem] rounded-md"
+              className="bg-richblack-900 w-full text-richblack-200 p-2 rounded-md"
             />
             {profileErrors.dateOfBirth && <span className='text-red-500 text-sm'>{profileErrors.dateOfBirth?.message}</span>}
           </label>
@@ -175,7 +171,7 @@ const Settings = () => {
           {/* Gender */}
           <label className="flex flex-col gap-1">
             <p className="text-sm">Gender</p>
-            <div className="bg-richblack-900 grid grid-cols-2 w-full text-richblack-200 p-[.65rem] rounded-md">
+            <div className="bg-richblack-900 grid grid-cols-2 w-full text-richblack-200 p-2 rounded-md">
               <label className="flex items-center gap-2">
                 <input type="radio" value="Male" {...registerProfile("gender", { required: true })} className="accent-yellow-50 cursor-pointer" />
                 <span>Male</span>
@@ -252,12 +248,12 @@ const Settings = () => {
           </label>
 
           {/* About */}
-          <label className="flex flex-col gap-1 col-span-2">
+          <label className="flex flex-col gap-1 col-span-1 md:col-span-2">
             <p className="text-sm">About</p>
             <textarea
               {...registerProfile("about")}
-              className="bg-richblack-900 w-full text-richblack-5 p-[.65rem] rounded-md"
-              rows={1}
+              className="bg-richblack-900 w-full text-richblack-5 p-2 rounded-md"
+              rows={2}
               placeholder="Enter Bio Details"
             />
           </label>
@@ -269,10 +265,11 @@ const Settings = () => {
       {/* Password Form */}
       <form
         onSubmit={handleSubmitPassword(onSubmitPassword)}
-        className="flex flex-col px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md gap-6 w-full"
+        className="flex flex-col px-4 sm:px-8 py-6 border border-richblack-500 bg-richblack-800 rounded-md gap-6 w-full"
       >
         <h2 className="text-lg font-semibold">Change Password</h2>
-        <div className="flex flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+          {/* Old Password */}
           <div className="flex flex-col gap-1 w-full relative">
             <label className="text-sm">Old Password <span className="text-red-600">*</span></label>
             <input
@@ -290,6 +287,7 @@ const Settings = () => {
             </span>
           </div>
 
+          {/* New Password */}
           <div className="flex flex-col gap-1 w-full relative">
             <label className="text-sm">New Password <span className="text-red-600">*</span></label>
             <input

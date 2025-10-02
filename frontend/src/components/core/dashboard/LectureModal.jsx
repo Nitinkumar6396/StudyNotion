@@ -51,8 +51,8 @@ const LectureModal = ({ sectionId, setView, view, subSection, setLectureModal}) 
 
   return (
     <div className="w-screen min-h-screen absolute bg-richblack-900/50 left-0 top-0 backdrop-blur-sm z-10 flex justify-center items-center">
-      <div className='flex flex-col gap-4 w-[55vw] rounded-md bg-richblack-800 mt-6'>
-        <div className="flex flex-row justify-between rounded-t-md text-3xl px-6 py-2 font-semibold bg-richblack-700">
+      <div className='flex flex-col gap-4 w-80 min-[530px]:w-[30rem] sm:w-[40rem] rounded-md bg-richblack-800 mt-6'>
+        <div className="flex flex-row justify-between rounded-t-md text-xl sm:text-3xl px-6 py-2 font-semibold bg-richblack-700">
           <h1 className="">Adding Lecture</h1>
           <button type="button" onClick={() => {
             if (view) setView(false)

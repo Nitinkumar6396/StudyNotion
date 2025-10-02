@@ -17,8 +17,8 @@ const Sidebar = () => {
     const navigate = useNavigate()
 
     return (
-        <div className='flex flex-col border-r border-richblack-500 bg-richblack-800 h-[90vh] overflow-y-auto overflow-x-hidden'>
-            <div className='w-60 flex flex-col pt-8 pb-6'>
+        <div className='flex flex-col border-r border-richblack-500 bg-richblack-800 h-[calc(100vh-3.5rem)] overflow-y-auto overflow-x-hidden'>
+            <div className='lg:w-60 flex flex-col pt-8 pb-6'>
                 {
                     sidebarLinks.map((item, index) => {
                         if (!item.type) {
@@ -29,14 +29,14 @@ const Sidebar = () => {
                 }
             </div>
 
-            <div className='w-52 mx-auto h-[1.5px] bg-richblack-500'></div>
+            <div className='lg:w-52 mx-auto h-[1.5px] bg-richblack-500'></div>
 
             <div className='flex flex-col py-6'>
                 <Link
                     to={'/dashboard/settings'}
-                    className={`flex flex-row items-center px-8 py-2 gap-3 ${location.pathname === '/dashboard/settings' ? "bg-richblack-900 border-l-2 border-yellow-50 text-yellow-50" : ""}`}>
-                    <VscSettingsGear />
-                    <p>Settings</p>
+                    className={`flex flex-row items-center px-4 lg:px-8 py-2 gap-3 ${location.pathname === '/dashboard/settings' ? "bg-richblack-900 border-l-2 border-yellow-50 text-yellow-50" : ""}`}>
+                    <VscSettingsGear className='max-lg:text-2xl'/>
+                    <p className='max-lg:hidden'>Settings</p>
                 </Link>
 
                 <button
@@ -47,7 +47,7 @@ const Sidebar = () => {
                             text:
                                 <div className='flex flex-row gap-2 items-center'>
                                     <p>Logout</p>
-                                    <VscSignOut />
+                                    <VscSignOut/>
                                 </div>,
                             handler: () => dispatch(logout(navigate))
                         },
@@ -56,9 +56,9 @@ const Sidebar = () => {
                             handler: () => setConfirmationModal(null)
                         }
                     })}
-                    className='flex flex-row px-8 py-2 items-center gap-3'>
-                    <VscSignOut />
-                    <p>Logout</p>
+                    className='flex flex-row px-4 lg:px-8 py-2 items-center gap-3'>
+                    <VscSignOut className='max-lg:text-2xl' />
+                    <p className='max-lg:hidden'>Logout</p>
                 </button>
             </div>
 

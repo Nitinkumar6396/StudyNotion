@@ -43,18 +43,18 @@ const MyCourses = () => {
     <div>
       <div className='p-10 flex flex-col gap-4'>
         <div className='flex flex-row justify-between'>
-          <h1 className='text-3xl font-semibold'>My Course</h1>
+          <h1 className='text-xl sm:text-3xl font-semibold'>My Course</h1>
           <Link to={'/dashboard/add-course'} className='flex flex-row gap-1 bg-yellow-50 text-richblack-900 font-semibold px-3 py-2 rounded-md items-center'>
             <p>Add Course</p>
             <FaPlus />
           </Link>
         </div>
 
-        <div className='border'>
-          <div className='grid grid-cols-[6fr_1fr_1fr] uppercase py-2 border-b gap-4'>
-            <p className='pl-6'>Courses <span className='text-richblack-100'>({courses?.length})</span></p>
-            <p className='pl-6'>Price</p>
-            <p className='pl-6'>Actions</p>
+        <div className='border border-richblack-500'>
+          <div className='max-[535px]:hidden grid grid-cols-[6fr_1fr_1fr] uppercase py-2 border-b border-richblack-500 gap-4'>
+            <p className='px-6'>Courses <span className='text-richblack-100'>({courses?.length})</span></p>
+            <p className='px-6'>Price</p>
+            <p className='px-6'>Actions</p>
           </div>
 
           {
@@ -70,14 +70,14 @@ const MyCourses = () => {
                 const minutes = String(date.getMinutes()).padStart(2, '0');
 
                 return (
-                  <div key={index} className='grid grid-cols-[6fr_1fr_1fr] py-8 pl-6 gap-4'>
-                    <div className='flex flex-row gap-4'>
+                  <div key={index} className='grid min-[535px]:grid-cols-[6fr_1fr_1fr] py-8 gap-4 border-b border-richblack-500'>
+                    <div className='flex flex-col md:flex-row gap-4 px-6'>
                       <img className='w-56 max-h-36 rounded-lg' src={course.thumbnail} alt="" />
 
-                      <div className='flex flex-col justify-between'>
+                      <div className='flex flex-col gap-1'>
                         <div className='flex flex-col'>
                           <h1 className='text-xl font-semibold'>{course.courseName}</h1>
-                          <p className='text-sm text-richblack-100'>{course.courseDescription}</p>
+                          <p className='text-sm max-lg:hidden text-richblack-100'>{course.courseDescription}</p>
                         </div>
 
                         <div className='flex flex-col gap-1'>
@@ -90,9 +90,9 @@ const MyCourses = () => {
                       </div>
                     </div>
 
-                    <p className='pl-6 flex items-center'>Rs. {course.price}</p>
+                    <p className='px-6 flex items-center'>Rs. {course.price}</p>
 
-                    <div className='flex flex-row gap-4 pl-6 text-lg items-center'>
+                    <div className='flex flex-row gap-4 px-6 text-lg items-center'>
                       <button
                         type='button'
                         onClick={() => {

@@ -57,7 +57,7 @@ const Upload = ({ value = null, onChange, errors, name, view }) => {
                             <span className='text-yellow-50 font-semibold'>Browse</span>
                             <br /> Max 6MB for images, 12MB for videos
                         </div>
-                        <ul className='flex flex-row justify-between mt-5 max-w-[22rem] w-full gap-3 list-inside list-disc text-xs'>
+                        <ul className='flex text-center flex-col sm:flex-row justify-between mt-5 max-w-[22rem] w-full gap-3 list-inside list-disc text-xs'>
                             <li>Aspect ratio 16:9</li>
                             <li>Recommended size 1024x576</li>
                         </ul>

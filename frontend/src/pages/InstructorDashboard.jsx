@@ -57,7 +57,7 @@ export default function Instructor() {
         </p>
       </div>
       { courses.length > 0 ? (
-        <div>
+        <div className="">
           <div className="my-4 flex h-[450px] space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (

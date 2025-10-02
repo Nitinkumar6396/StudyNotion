@@ -40,7 +40,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" />
         </Link>
 
-        <nav>
+        <nav className='max-md:hidden'>
           <ul className='flex gap-x-6 text-richblack-25 items-center'>
             {
               NavbarLinks.map((item, index) => {
@@ -50,7 +50,7 @@ const Navbar = () => {
                       item.title === "Catalog"
                         ? (
                           <div className='group cursor-pointer h-14 flex'>
-                            <div className={`flex flex-row items-center gap-2 ${location.pathname.startsWith('/catalog') ? 'text-yellow-50' : 'text-richblack-25' }`}>
+                            <div className={`flex flex-row items-center gap-2 ${location.pathname.startsWith('/catalog') ? 'text-yellow-50' : 'text-richblack-25'}`}>
                               {item.title}
                               <FaAngleDown />
                             </div>
@@ -90,10 +90,9 @@ const Navbar = () => {
         </nav>
 
         <div className='flex gap-x-4 items-center'>
-
           {
             user && user.accountType === 'Student' && (
-              <Link to={'/dashboard/cart'} className='text-white text-2xl relative'>
+              <Link to={'/dashboard/cart'} className='text-white text-2xl relative max-md:hidden'>
                 {totalItems > 0
                   ? <p className='absolute text-sm w-4 h-4 flex justify-center items-center rounded-md bg-yellow-50 text-richblack-900 font-semibold bottom-[0.9rem] left-[0.7rem]'>{totalItems}
                   </p>
@@ -106,12 +105,12 @@ const Navbar = () => {
           {
             token !== null && <ProfileDropDown />
           }
-          {
-            token !== null && <MobProfileDropDown />
-          }
+
+          <MobProfileDropDown />
+
           {
             token === null && (
-              <Link to={'/login'}>
+              <Link to={'/login'} className='max-md:hidden'>
                 <button className={` px-[12px] py-[6px] text-richblack-25 rounded-md ${location.pathname === '/login' ? 'border-[1.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}>
                   Log in
                 </button>
@@ -120,14 +119,13 @@ const Navbar = () => {
           }
           {
             token === null && (
-              <Link to={'/signup'}>
+              <Link to={'/signup'} className='max-md:hidden'>
                 <button className={` px-[12px] py-[6px] text-richblack-25 rounded-md ${location.pathname === '/signup' ? 'border-[1.5px] border-yellow-50' : 'border border-richblack-700 bg-richblack-800'} `}>
                   Sign Up
                 </button>
               </Link>
             )
           }
-
         </div>
       </div>
     </div>

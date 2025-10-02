@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAverageRating, getCourseDetails } from '../operations/courseDetailApi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import Footer from '../components/common/Footer'
 import { buyCourses } from '../operations/paymentApi'
 import { addToCart } from '../slices/cartSlice'
 import { Spinner } from './Spinner'
+import { toast } from 'react-toastify'
 
 const Course = () => {
 
@@ -23,6 +24,7 @@ const Course = () => {
   const navigate = useNavigate()
   const { user } = useSelector(state => state.profile)
   const [loading, setLoading] = useState(false)
+  const sectionRef = useRef([])
 
   const calSubSection = () => {
     let ans = 0
@@ -51,13 +53,38 @@ const Course = () => {
     )()
   }, [courseId, dispatch])
 
-  const handleBuyCourses = async ()=>{
+  const handleBuyCourses = async () => {
     setLoading(true)
     await buyCourses([courseId], navigate, user, setLoading)
     setLoading(false)
   }
 
   // console.log(courseDetails)
+
+  const handleCollapseAll = () => {
+    sectionRef.current.forEach(ref => {
+      if (ref) {
+        ref.open = false;
+      }
+    })
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: courseDetails.courseName,
+        text: "Check out this course I found!",
+        url: window.location.href
+      })
+      .catch(err => {
+          console.log("Error sharing:", err)
+      })
+    }
+    else{
+      navigator.clipboard.writeText(window.location.href)
+      toast.success('Link copied to clipboard!')
+    }
+  }
 
   if (!courseDetails) return <Spinner />
 
@@ -66,7 +93,7 @@ const Course = () => {
       <div className='bg-richblack-800 text-richblack-5'>
         <div className='w-11/12 mx-auto py-10 flex flex-col relative'>
 
-          <div className='flex flex-col gap-1 w-[calc(91vw-24rem)] border-r border-richblack-600'>
+          <div className='flex flex-col gap-1 pr-2 min-[850px]:w-[calc(91vw-24rem)] min-[850px]:border-r border-richblack-600'>
             <p className='text-sm text-richblack-300 mb-2'>Home / Learning / <span className='text-yellow-50'>{courseDetails.category.name}</span></p>
             <h1 className='text-3xl font-medium'>{courseDetails.courseName}</h1>
             <p className='text-sm text-richblack-200'>{courseDetails.courseDescription}</p>
@@ -93,8 +120,8 @@ const Course = () => {
 
           </div>
 
-          <div className='bg-richblack-700 rounded-lg absolute right-0'>
-            <img className='w-[22rem] max-h-48 rounded-t-lg' src={courseDetails.thumbnail} alt="" />
+          <div className='bg-richblack-700 rounded-lg min-[850px]:absolute right-0 mt-14 min-[850px]:mt-0'>
+            <img className='w-[22rem] max-h-48 rounded-t-lg hidden min-[850px]:block' src={courseDetails.thumbnail} alt="" />
             <div className='p-4 flex flex-col gap-4'>
               <p className='text-2xl font-semibold'>Rs. {courseDetails.price}</p>
 
@@ -102,11 +129,11 @@ const Course = () => {
                 className='bg-yellow-50 px-5 py-2 rounded-lg hover:scale-95 transition-all duration-200 text-richblack-900'
                 onClick={() =>
                   !courseDetails?.studentsEnrolled?.includes(user._id)
-                    
+
                     ? dispatch(addToCart(courseDetails))
-                      : navigate(
-                        `/view-course/${courseDetails._id}/section/${courseDetails.courseContent?.[0]?._id}/sub-section/${courseDetails.courseContent?.[0]?.subSections?.[0]?._id}`
-                      )
+                    : navigate(
+                      `/view-course/${courseDetails._id}/section/${courseDetails.courseContent?.[0]?._id}/sub-section/${courseDetails.courseContent?.[0]?.subSections?.[0]?._id}`
+                    )
                 }
               >
                 {courseDetails?.studentsEnrolled?.includes(user._id) ? 'Go to Course' : 'Add to Cart'}
@@ -134,7 +161,7 @@ const Course = () => {
                 <p className='flex flex-row text-caribbeangreen-100 items-center gap-2 text-sm'><MdMobileFriendly size={13} /> <span>Access on Mobile and TV</span></p>
               </div>
 
-              <button className='flex flex-row gap-1 items-center justify-center text-yellow-100'>
+              <button onClick={handleShare} className='flex flex-row gap-1 items-center justify-center text-yellow-100'>
                 <FaShareFromSquare />
                 <p>Share</p>
               </button>
@@ -146,27 +173,31 @@ const Course = () => {
 
       <div className='bg-richblack-900 text-richblack-5'>
         <div className='w-11/12 mx-auto py-10 flex flex-col'>
-          <div className='w-[calc(91vw-24rem)] border border-richblack-700 p-5'>
+          <div className='min-[850px]:w-[calc(91vw-24rem)] border border-richblack-700 p-5'>
             <h1 className='text-3xl font-medium'>What you'll learn</h1>
             <p className='text-base text-richblack-50'>{courseDetails.whatYouWillLearn}</p>
           </div>
 
-          <div className='mt-10 w-[calc(91vw-24rem)]'>
+          <div className='mt-10 min-[850px]:w-[calc(91vw-24rem)]'>
             <h1 className='text-3xl font-medium'>Course content</h1>
             <div className='flex flex-row gap-2 justify-between'>
-              <ul className='flex flex-row gap-8'>
-                <li className=''>{courseDetails.courseContent.length} Section(s)</li>
-                <li className='list-disc'>{calSubSection()} Lecture(s)</li>
+              <ul className='flex flex-row gap-6'>
+                <li className='hidden min-[390px]:block'>{courseDetails.courseContent.length} Section(s)</li>
+                <li className='flex items-center gap-2'><p className='w-1 h-1 rounded-full bg-white border hidden min-[390px]:block'></p> {calSubSection()} Lecture(s)</li>
               </ul>
-              <button className='text-yellow-50'>Collapse all sections</button>
+              <button onClick={handleCollapseAll} className='text-yellow-50'>Collapse all sections</button>
             </div>
           </div>
 
-          <div className="w-[calc(91vw-24rem)] py-5">
+          <div className="min-[850px]:w-[calc(91vw-24rem)] py-5">
             {courseDetails?.courseContent?.map((section, index) => (
 
 
-              <details key={index} className="border border-richblack-700 group">
+              <details
+                key={index}
+                className="border border-richblack-700 group"
+                ref={el => sectionRef.current[index] = el}
+              >
                 <summary className="flex justify-between items-center cursor-pointer p-4 bg-richblack-700 hover:bg-richblack-600 border-b border-richblack-400">
                   <span className="flex items-center gap-2" >
                     <FaChevronDown className="transition-transform group-open:rotate-180" />
@@ -193,7 +224,7 @@ const Course = () => {
             ))}
           </div>
 
-          <div className='flex flex-col gap-2 w-[calc(91vw-24rem)] mt-6'>
+          <div className='flex flex-col gap-2 min-[850px]:w-[calc(91vw-24rem)] mt-6'>
             <h1 className='text-3xl font-medium'>Author</h1>
             <div className='flex flex-row items-center gap-2'>
               <img className='w-10 h-10 rounded-full object-cover object-center' src={courseDetails.instructor.image} alt="" />
