@@ -15,7 +15,7 @@ export const auth = async (req, res, next) => {
       req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
-      // console.log('token is empty')
+      console.log('token is empty')
       return res.status(401).json({
         success: false,
         message: "Token is missing",

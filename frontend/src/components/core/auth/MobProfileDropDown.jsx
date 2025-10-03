@@ -31,7 +31,7 @@ const MobProfileDropDown = () => {
     fetchSublinks()
   }, [])
 
-  console.log(location)
+  // console.log(location)
 
   return (
     <div className='md:hidden text-richblack-5 relative'>
