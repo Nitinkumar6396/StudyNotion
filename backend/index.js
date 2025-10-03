@@ -24,7 +24,7 @@ cloudinaryConnect()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-	origin:'https://study-notion-frontent.vercel.app',
+	origin:['https://study-notion-frontent.vercel.app','http://localhost:5173'],
 <<<<<<< HEAD
 	credentials:true
 =======
