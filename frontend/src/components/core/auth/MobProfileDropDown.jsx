@@ -29,7 +29,7 @@ const MobProfileDropDown = () => {
       setLoading(false)
     }
     fetchSublinks()
-  }, [])
+  }, [dispatch])
 
   // console.log(location)
 
