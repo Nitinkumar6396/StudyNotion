@@ -23,7 +23,7 @@ const Login = () => {
 
     return (
         <div className='flex flex-col'>
-            <div className='min-h-[calc(100vh-3.5rem)]'>
+            <div className='min-h-[calc(100vh-3.5rem)] flex items-center'>
                 <div className='w-11/12 mx-auto flex flex-col sm:flex-row gap-10 lg:gap-20 items-center justify-center py-10'>
 
                     {/* Left Side: Form */}
