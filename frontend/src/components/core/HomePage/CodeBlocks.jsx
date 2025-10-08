@@ -32,6 +32,7 @@ const CodeBlocks = ({ position, heading, subheading, btn1, btn2, codeblock, code
       {/* Right Section */}
       <div className="w-full md:w-[40%] border border-richblack-600 text-[#f0db3c] rounded-lg p-3 flex flex-row text-[10px] sm:text-xs relative">
         {backgroundGradient}
+  
         {/* Line Numbers */}
         <div className="text-center text-sm w-[8%] sm:w-[6%]  flex flex-col text-richblack-400 font-inter font-bold">
           {Array.from({ length: 11 }, (_, i) => (

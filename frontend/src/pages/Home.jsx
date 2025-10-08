@@ -78,7 +78,7 @@ const Home = () => {
                     }}
                     codeblock={`<!DOCTYPE html>\n<html>\n  <head>\n    <title>Example</title>\n    <link rel="stylesheet"\n href="styles.css">\n  </head>\n  <body>\n    <h1><a href="/">Header\n </a></h1>\n    <nav>`}
                     codeColor={'text-yellow-25'}
-                    backgroundGradient={<div className="codeblock1 absolute"></div>}
+                    backgroundGradient={<div className="absolute w-[85%] h-full rounded-full opacity-25 bg-gradient-to-r from-pink-100 to-yellow-5  -top-10 -left-8 blur-3xl"></div>}
                 />
 
                 <div className='h-10'></div>
@@ -107,7 +107,9 @@ const Home = () => {
                     }}
                     codeblock={`import React from "react";\nimport CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\nconst Home = () => {\n  return (\n    <div>\n      Home\n    </div>\n  );};\nexport default Home;`}
                     codeColor={'text-white'}
-                    backgroundGradient={<div className="codeblock2"></div>}
+                    backgroundGradient={<div
+                        class="absolute w-[85%] h-full rounded-full opacity-25 bg-gradient-to-r from-blue-100 to-blue-500  -top-10 -left-8 blur-2xl">
+                    </div>}
                 />
 
                 <ExploreMore />
