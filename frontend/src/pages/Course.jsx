@@ -86,6 +86,8 @@ const Course = () => {
     }
   }
 
+  // console.log(courseDetails?.studentsEnrolled?.includes(user?._id))
+
   if (!courseDetails) return <Spinner />
 
   return courseDetails && (
@@ -128,7 +130,7 @@ const Course = () => {
               <button
                 className='bg-yellow-50 px-5 py-2 rounded-lg hover:scale-95 transition-all duration-200 text-richblack-900'
                 onClick={() =>
-                  !courseDetails?.studentsEnrolled?.includes(user._id)
+                  !courseDetails?.studentsEnrolled?.includes(user?._id)
 
                     ? dispatch(addToCart(courseDetails))
                     : navigate(
@@ -136,11 +138,11 @@ const Course = () => {
                     )
                 }
               >
-                {courseDetails?.studentsEnrolled?.includes(user._id) ? 'Go to Course' : 'Add to Cart'}
+                {courseDetails?.studentsEnrolled?.includes(user?._id) ? 'Go to Course' : 'Add to Cart'}
               </button>
 
               {
-                !courseDetails?.studentsEnrolled?.includes(user._id) &&
+                !courseDetails?.studentsEnrolled?.includes(user?._id) &&
                 <button
                   className={`bg-richblack-800 text-richblack-5 px-5 py-2 rounded-lg hover:scale-95 transition-all duration-200 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                   onClick={handleBuyCourses}
