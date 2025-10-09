@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoginImage from '../assets/Images/login.png'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -20,6 +20,10 @@ const Login = () => {
         await dispatch(login(email, password, navigate))
         setLoading(false)
     }
+
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
 
     return (
         <div className='flex flex-col'>

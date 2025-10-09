@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import signupImage from '../assets/Images/signup2.webp'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import 'react-phone-input-2/lib/style.css';
@@ -67,6 +67,10 @@ const SignUp = () => {
             contactNumber: '',
         })
     }
+
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
 
     return (
         <div className='flex flex-col min-h-[90vh]'>
