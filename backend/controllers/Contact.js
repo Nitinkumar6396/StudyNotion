@@ -4,6 +4,9 @@ export const sendContactMessage = async (req, res) => {
     try {
         const { firstName, lastName, email, phoneNumber, message } = req.body
 
+        console.log(firstName)
+        console.log(process.env.MAIL_HOST)
+
         if (!firstName || !email || !phoneNumber || !message) {
             return res.status(403).json({
                 success: false,

@@ -30,7 +30,7 @@ const ContactForm = () => {
   const formSumbit = async (data) => {
     const toastId = toast.loading("Sending message...");
     try {
-      await axios.post(`https://studynotion-ohoh.onrender.com/api/user/send-contact-message`, {
+      await axios.post(`http://localhost:4000/api/user/send-contact-message`, {
         ...data,
       });
       toast.success("Message sent successfully!");

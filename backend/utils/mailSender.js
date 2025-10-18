@@ -1,30 +1,23 @@
-
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export const mailSender = async (email, title, body) => {
   try {
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
-
-    const info = await transporter.sendMail({
-      from: `"StudyNotion" <${process.env.MAIL_USER}>`,
+    const info = await resend.emails.send({
+      from: "StudyNotion <onboarding@resend.dev>",
       to: email,
       subject: title,
       html: body,
     });
 
+    console.log("Email sent successfully:", info.id);
     return info;
   } catch (err) {
-    console.log("Mail sending error:", err.message);
-    process.exit(1);
+    console.error("Mail sending error:", err.message);
+    throw err;
   }
 };
