@@ -108,7 +108,7 @@ const Home = () => {
                     codeblock={`import React from "react";\nimport CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\nconst Home = () => {\n  return (\n    <div>\n      Home\n    </div>\n  );};\nexport default Home;`}
                     codeColor={'text-white'}
                     backgroundGradient={<div
-                        class="absolute w-[85%] h-full rounded-full opacity-25 bg-gradient-to-r from-blue-100 to-blue-500  -top-10 -left-8 blur-2xl">
+                        className="absolute w-[85%] h-full rounded-full opacity-25 bg-gradient-to-r from-blue-100 to-blue-500  -top-10 -left-8 blur-2xl">
                     </div>}
                 />
 

@@ -24,10 +24,16 @@ cloudinaryConnect()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-	origin:['https://study-notion-frontent.vercel.app','http://localhost:5173'],
-	credentials:true,
-	allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://study-notion-frontent.vercel.app",
+    "https://studynotion-ohoh.onrender.com"    
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+}));
+
 app.use(fileUpload({
 	useTempFiles:true,
 	tempFileDir:'/tmp'
