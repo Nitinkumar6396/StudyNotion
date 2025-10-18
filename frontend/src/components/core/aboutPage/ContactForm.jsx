@@ -123,7 +123,7 @@ const ContactForm = () => {
                 enableSearch
                 placeholder="Enter phone number"
                 containerClass="w-full"
-                inputClass="!w-full !bg-richblack-800 !p-2 !rounded-md !text-richblack-50 !border-none focus:!ring-1 focus:!ring-yellow-50"
+                inputClass="!w-full !bg-richblack-800 !pl-12 !p-2 !rounded-md !text-richblack-50 !border-none focus:!ring-1 focus:!ring-yellow-50"
                 buttonClass="!bg-richblack-800 !border-none !rounded-l-md"
                 dropdownClass="!bg-richblack-800 !text-richblack-50 !rounded-md"
                 searchClass="!bg-richblack-700 !text-richblack-50"
